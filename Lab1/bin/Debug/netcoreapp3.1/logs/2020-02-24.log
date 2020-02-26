@@ -1,0 +1,19 @@
+2020-02-24 09:49:44.5152 ERROR Error trying to read: Could not find file 'F:\Work\ИГИ\Lab1\bin\Debug\netcoreapp3.1\a'.
+2020-02-24 10:10:09.8053 ERROR Error trying to read: Index was outside the bounds of the array.
+2020-02-24 10:18:33.5784 ERROR Error trying to read: Could not find file 'F:\Work\ИГИ\Lab1\bin\Debug\netcoreapp3.1\a'.
+2020-02-24 10:19:22.5301 ERROR Error trying to read: Could not find file 'F:\Work\ИГИ\Lab1\bin\Debug\netcoreapp3.1\InputFile.csv'.
+2020-02-24 10:22:33.2644 ERROR Error trying to read: Could not find file 'F:\Work\ИГИ\Lab1\bin\Debug\netcoreapp3.1\InputFile.csv'.
+2020-02-24 10:23:07.8404 ERROR Error trying to read: Could not find file 'F:\Work\ИГИ\Lab1\bin\Debug\netcoreapp3.1\InputFile.csv'.
+2020-02-24 10:27:06.3592 ERROR Error trying to read: Could not find file 'C:\Users\User\InputFile.csv'.
+2020-02-24 10:27:57.1532 ERROR Error trying to read: Could not find file 'C:\Users\User\InputFile.csv'.
+2020-02-24 10:28:48.1266 ERROR Error trying to write: The file is not an valid Package file. If the file is encrypted, please supply the password in the constructor.
+2020-02-24 10:28:55.3537 ERROR Error trying to write: The file is not an valid Package file. If the file is encrypted, please supply the password in the constructor.
+2020-02-24 10:29:29.6329 ERROR Error trying to write: The file is not an valid Package file. If the file is encrypted, please supply the password in the constructor.
+2020-02-24 10:48:14.6732 ERROR Error trying to read: You can ignore bad data by setting BadDataFound to null.
+2020-02-24 21:33:01.9066 ERROR Error trying to read: Field with name 'Patronymic' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+2020-02-24 21:33:18.6600 ERROR Error trying to read: Index was outside the bounds of the array.
+2020-02-24 21:33:26.9985 ERROR Error trying to read: Field with name 'Patronymic' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+2020-02-24 21:33:34.8205 ERROR Error trying to read: Field with name 'Name' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+2020-02-24 21:33:42.7442 ERROR Error trying to read: Field with name 'Name' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+2020-02-24 21:33:48.2386 ERROR Error trying to read: Index was outside the bounds of the array.
+2020-02-24 21:35:49.0985 ERROR Error trying to read: Field with name 'Patronymic' does not exist. You can ignore missing fields by setting MissingFieldFound to null.

@@ -1,0 +1,15 @@
+2020-02-26 08:43:50.8760 ERROR Read error: Field with name 'Name' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+2020-02-26 08:51:24.3624 ERROR Read error: Index was outside the bounds of the array.
+2020-02-26 08:51:32.4483 ERROR Read error: The conversion cannot be performed.
+    Text: ''
+    MemberType: 
+    TypeConverter: 'CsvHelper.TypeConversion.Int32Converter'
+2020-02-26 08:51:58.7210 ERROR Read error: Index was outside the bounds of the array.
+2020-02-26 08:56:59.6427 ERROR Read error: Wrong number of parameters
+2020-02-26 09:54:39.0606 ERROR Read error: Wrong number of parameters
+2020-02-26 09:54:50.5288 ERROR Read error: The conversion cannot be performed.
+    Text: ''
+    MemberType: 
+    TypeConverter: 'CsvHelper.TypeConversion.Int32Converter'
+2020-02-26 09:55:04.7114 ERROR Read error: Wrong number of parameters
+2020-02-26 09:55:09.7769 ERROR Read error: Wrong number of parameters
