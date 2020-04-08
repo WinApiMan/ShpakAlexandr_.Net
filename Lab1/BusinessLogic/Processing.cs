@@ -32,19 +32,19 @@ namespace Lab1.BusinessLogic
             {
                 students = reader.ReadFile(commandLine[(int)InputData.InputFilePath]);
             }
-            catch(FileNotFoundException message)
+            catch (FileNotFoundException message)
             {
                 Console.WriteLine(message.Message);
                 logger.Error($"File not found: {message.Message}");
                 return;
             }
-            catch(ArgumentException message)
+            catch (ArgumentException message)
             {
                 Console.WriteLine(message.Message);
                 logger.Error($"Invalid argument: {message.Message}");
                 return;
             }
-            catch(IOException message)
+            catch (IOException message)
             {
                 Console.WriteLine(message.Message);
                 logger.Error($"Input/output error: {message.Message}");
@@ -63,7 +63,7 @@ namespace Lab1.BusinessLogic
                 var allAverage = ConsoleHelper.FindAverageInAllSubjects(students);
                 writer.WriteFile(commandLine[(int)InputData.OutputFilePath], students, allAverage);
             }
-            catch(ArgumentOutOfRangeException message)
+            catch (ArgumentOutOfRangeException message)
             {
                 Console.WriteLine(message.Message);
                 logger.Error($"Index out of range: {message.Message}");
@@ -89,6 +89,5 @@ namespace Lab1.BusinessLogic
             }
             Console.WriteLine("Successfully");
         }
-
     }
 }
