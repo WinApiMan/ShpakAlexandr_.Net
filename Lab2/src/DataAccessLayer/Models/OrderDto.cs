@@ -3,7 +3,7 @@ using Taxi.DAL.Interfaces;
 
 namespace Taxi.DAL.Models
 {
-    public class Order : IEntity
+    public class OrderDto : IEntity
     {
         public int Id { get; set; }
 
@@ -21,8 +21,8 @@ namespace Taxi.DAL.Models
 
         public int ClientId { get; set; }
 
-        public virtual Driver Driver { get; set; }
+        public virtual DriverDto Driver { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual ClientDto Client { get; set; }
     }
 }

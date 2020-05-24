@@ -1,24 +1,17 @@
 ﻿using BusinessLogic.Interfaces;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Json;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Services.ReadWriteServices
 {
     public class JsonReader : IReader
     {
-        public IEnumerable<T> Read<T>(string path)
+        public async Task<IEnumerable<T>> Read<T>(string path)
         {
             using var fileStream = new FileStream(path, FileMode.OpenOrCreate);
-            var json = new DataContractJsonSerializer(typeof(List<T>));
-            try
-            {
-                return json.ReadObject(fileStream) as List<T>;
-            }
-            catch
-            {
-                return new List<T>();
-            }
+            return await JsonSerializer.DeserializeAsync<IEnumerable<T>>(fileStream);
         }
     }
 }

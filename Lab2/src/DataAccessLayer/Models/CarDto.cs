@@ -2,7 +2,7 @@
 
 namespace Taxi.DAL.Models
 {
-    public class Car : IEntity
+    public class CarDto : IEntity
     {
         public int Id { get; set; }
 
@@ -18,6 +18,6 @@ namespace Taxi.DAL.Models
 
         public bool IsRepair { get; set; }
 
-        public virtual Driver Driver { get; set; }
+        public virtual DriverDto Driver { get; set; }
     }
 }

@@ -1,18 +1,19 @@
-﻿using BusinessLogic;
-using Ninject;
+﻿using Ninject;
 using System;
-using Taxi.BusinessLogic.Processings;
-using Taxi.ConsoleApplication;
+using System.Threading.Tasks;
+using Taxi.ConsoleUI.Configuration;
+using Taxi.ConsoleUI.ConsoleServices;
+using Taxi.ConsoleUI.Interfaces;
 
-namespace Lab2Console
+namespace Taxi.ConsoleUI
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            IKernel kernal = new StandardKernel(new NinjectRegistration());
-            var userInterface = new ConsoleMenuInterface(kernal.Get<CarService>(), kernal.Get<DriverService>(), kernal.Get<OrderService>());
-            userInterface.StartMenu();
+            IKernel kernel = new StandardKernel(new NinjectConfiguration());
+            IConsoleService<RoleService> roleInterface = kernel.Get<RoleService>();
+            await roleInterface.StartMenu();
             Console.ReadKey();
         }
     }

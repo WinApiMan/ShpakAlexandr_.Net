@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Taxi.DAL.Interfaces;
 
-namespace TaxiDAL.Repositorie
+namespace TaxiDAL.Repositories
 {
     public class TaxiRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
@@ -18,43 +18,38 @@ namespace TaxiDAL.Repositorie
             _dbSet = context.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> Get()
+        public async Task<IEnumerable<TEntity>> Get()
         {
-            return _dbSet;
+            return await _dbSet.ToListAsync();
         }
 
-        public IQueryable<TEntity> Get(Func<TEntity, bool> predicate)
+        public async Task<TEntity> FindById(int id)
         {
-            return _dbSet.Where(predicate).AsQueryable();
+            return await _dbSet.FindAsync(id);
         }
 
-        public TEntity FindById(int id)
+        public async Task Create(TEntity item)
         {
-            return _dbSet.Find(id);
+            await _dbSet.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Create(TEntity item)
-        {
-            _dbSet.Add(item);
-            _context.SaveChanges();
-        }
-
-        public void Update(TEntity item)
+        public async Task Update(TEntity item)
         {
             _context.Entry(item).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Remove(TEntity item)
+        public async Task Remove(TEntity item)
         {
             _dbSet.Remove(item);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<TEntity> list)
+        public async Task AddRange(IEnumerable<TEntity> list)
         {
-            _dbSet.AddRange(list);
-            _context.SaveChanges();
+            await _dbSet.AddRangeAsync(list);
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()

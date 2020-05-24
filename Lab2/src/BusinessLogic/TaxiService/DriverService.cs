@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
+using System.Threading.Tasks;
 using Taxi.DAL.Interfaces;
 using Taxi.DAL.Models;
 
@@ -12,83 +10,61 @@ namespace Taxi.BusinessLogic.Processings
 {
     public class DriverService
     {
-        private readonly IRepository<Driver> _driverRepository;
+        private readonly IRepository<DriverDto> _driverRepository;
 
         private readonly IMapper _mapper;
 
-        public DriverService(IRepository<Driver> driverRepository, IMapper mapper)
+        public DriverService(IRepository<DriverDto> driverRepository, IMapper mapper)
         {
             _driverRepository = driverRepository;
             _mapper = mapper;
         }
 
-        public void AddDriver(DriverDto driver)
+        public async Task AddDriver(Driver driver)
         {
-            var newDriver = _mapper.Map<Driver>(driver);
-            _driverRepository.Create(newDriver);
+            var newDriver = _mapper.Map<DriverDto>(driver);
+            await _driverRepository.Create(newDriver);
         }
 
-        public bool DeleteDriver(int id)
+        public async Task DeleteDriver(int id)
         {
-            try
-            {
-                var driver = _driverRepository.FindById(id);
-                _driverRepository.Remove(driver);
-                return true;
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-            catch (DbException)
-            {
-                return false;
-            }
+            var driver = await _driverRepository.FindById(id);
+            await _driverRepository.Remove(driver);
         }
 
-        public void UpdateDriver(DriverDto driver)
+        public async Task UpdateDriver(Driver driver)
         {
-            var newDriver = _mapper.Map<Driver>(driver);
-            _driverRepository.Update(newDriver);
+            var newDriver = _mapper.Map<DriverDto>(driver);
+            await _driverRepository.Update(newDriver);
         }
 
-        public DriverDto FindById(int id)
+        public async Task<Driver> FindById(int id)
         {
-            return _mapper.Map<DriverDto>(_driverRepository.FindById(id));
+            return _mapper.Map<Driver>(await _driverRepository.FindById(id));
         }
 
-        public IEnumerable<DriverDto> GetAll()
+        public async Task<IEnumerable<Driver>> GetAll()
         {
-            return _mapper.Map<IEnumerable<DriverDto>>(_driverRepository.Get());
+            return _mapper.Map<IEnumerable<Driver>>(await _driverRepository.Get());
         }
 
-        public DriverDto FindByDriverLicenseNumber(string licenseNumber)
+        public async Task<Driver> FindByDriverLicenseNumber(string licenseNumber)
         {
-            return _mapper.Map<DriverDto>(_driverRepository.Get(e => e.DriverLicenseNumber.Equals(licenseNumber)).First());
+            var drivers = await _driverRepository.Get();
+            return _mapper.Map<Driver>(drivers.Where(e => e.DriverLicenseNumber.Equals(licenseNumber)));
         }
 
-        public bool GiveCar(int driverId, int carId)
+        public async Task GiveCar(int driverId, int carId)
         {
-            try
-            {
-                var driver = _driverRepository.FindById(driverId);
-                driver.CarId = carId;
-                _driverRepository.Update(driver);
-                return true;
-            }
-            catch (DbUpdateException)
-            {
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var driver = await _driverRepository.FindById(driverId);
+            driver.CarId = carId;
+            await _driverRepository.Update(driver);
         }
 
-        public bool UniquenessCheck(DriverDto driver)
+        public async Task<bool> UniquenessCheck(Driver driver)
         {
-            var resultOfFind = _driverRepository.Get().FirstOrDefault(e => e.DriverLicenseNumber.Equals(driver.DriverLicenseNumber) || e.DateOfIssueOfDriversLicense.Equals(driver.DateOfIssueOfDriversLicense) || e.CallSign == driver.CallSign);
+            var drivers = await _driverRepository.Get();
+            var resultOfFind = drivers.FirstOrDefault(e => e.DriverLicenseNumber.Equals(driver.DriverLicenseNumber) || e.DateOfIssueOfDriversLicense.Equals(driver.DateOfIssueOfDriversLicense) || e.CallSign == driver.CallSign);
             if (resultOfFind != null)
             {
                 return false;

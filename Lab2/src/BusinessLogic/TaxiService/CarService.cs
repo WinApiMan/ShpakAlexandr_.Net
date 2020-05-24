@@ -3,6 +3,7 @@ using BusinessLogic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Taxi.DAL.Interfaces;
 using Taxi.DAL.Models;
 
@@ -10,88 +11,80 @@ namespace Taxi.BusinessLogic.Processings
 {
     public class CarService
     {
-        private readonly IRepository<Car> _carRepository;
+        private readonly IRepository<CarDto> _carRepository;
 
-        private readonly IRepository<Driver> _driverRepository;
+        private readonly IRepository<DriverDto> _driverRepository;
 
         private readonly IMapper _mapper;
 
-        public CarService(IRepository<Car> carRepository, IRepository<Driver> driverRepository, IMapper mapper)
+        public CarService(IRepository<CarDto> carRepository, IRepository<DriverDto> driverRepository, IMapper mapper)
         {
             _carRepository = carRepository;
             _driverRepository = driverRepository;
             _mapper = mapper;
         }
 
-        public void AddCar(CarDto car)
+        public async Task AddCar(Car car)
         {
-            var newCar = _mapper.Map<Car>(car);
-            _carRepository.Create(newCar);
+            var newCar = _mapper.Map<CarDto>(car);
+            await _carRepository.Create(newCar);
         }
 
-        public bool DeleteCar(int id)
+        public async Task DeleteCar(int id)
         {
-            var car = _carRepository.FindById(id);
-            var driver = _driverRepository.FindById(id);
+            var car = await _carRepository.FindById(id);
+            var driver = await _driverRepository.FindById(id);
             if (car != null && driver != null)
             {
                 driver.CarId = null;
-                _driverRepository.Update(driver);
-                _carRepository.Remove(car);
-                return true;
+                await _driverRepository.Update(driver);
+                await _carRepository.Remove(car);
             }
             else if (car != null && driver == null)
             {
-                _carRepository.Remove(car);
-                return true;
-            }
-            else
-            {
-                return false;
+                await _carRepository.Remove(car);
             }
         }
 
-        public CarDto FindById(int id)
+        public async Task<Car> FindById(int id)
         {
-            return _mapper.Map<CarDto>(_carRepository.FindById(id));
+            return _mapper.Map<Car>(await _carRepository.FindById(id));
         }
 
-        public void UpdateCar(CarDto car)
+        public async Task UpdateCar(Car car)
         {
-            var newCar = _mapper.Map<Car>(car);
-            _carRepository.Update(newCar);
+            var newCar = _mapper.Map<CarDto>(car);
+            await _carRepository.Update(newCar);
         }
 
-        public IEnumerable<CarDto> GetAll()
+        public async Task<IEnumerable<Car>> GetAll()
         {
-            return _mapper.Map<IEnumerable<CarDto>>(_carRepository.Get());
+            return _mapper.Map<IEnumerable<Car>>(await _carRepository.Get());
         }
 
-        public IEnumerable<CarDto> CarOnRepair()
+        public async Task<IEnumerable<Car>> CarOnRepair()
         {
-            return _mapper.Map<IEnumerable<CarDto>>(_carRepository.Get(e => e.IsRepair));
+            var cars = await _carRepository.Get();
+            return _mapper.Map<IEnumerable<Car>>(cars.Where(e => e.IsRepair));
         }
 
-        public IEnumerable<CarDto> GetOldCars(int age)
+        public async Task<IEnumerable<Car>> GetOldCars(int age)
         {
-            return _mapper.Map<IEnumerable<CarDto>>(_carRepository.Get(e => DateTime.Now.Year - e.YearOfIssue <= age));
+            var cars = await _carRepository.Get();
+            return _mapper.Map<IEnumerable<Car>>(cars.Where(e => DateTime.Now.Year - e.YearOfIssue <= age));
         }
 
-        public CarDto FindByGovernmentNumber(string governmentNumber)
+        public async Task<Car> FindByGovernmentNumber(string governmentNumber)
         {
-            try
-            {
-                return _mapper.Map<CarDto>(_carRepository.Get(e => e.GovernmentNumber.Equals(governmentNumber)).First());
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            var cars = await _carRepository.Get();
+            cars.Where(e => e.GovernmentNumber.Equals(governmentNumber));
+            return _mapper.Map<Car>(cars.First());
         }
 
-        public bool UniquenessCheck(CarDto car)
+        public async Task<bool> UniquenessCheck(Car car)
         {
-            var resultOfFind = _carRepository.Get().FirstOrDefault(e => e.GovernmentNumber.Equals(car.GovernmentNumber) || e.RegistrationNumber.Equals(car.RegistrationNumber));
+            var cars = await _carRepository.Get();
+            var resultOfFind = cars.FirstOrDefault(e => e.GovernmentNumber.Equals(car.GovernmentNumber) || e.RegistrationNumber.Equals(car.RegistrationNumber));
             if (resultOfFind != null)
             {
                 return false;

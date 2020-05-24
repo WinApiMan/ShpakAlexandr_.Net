@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Taxi.DAL.Models;
 
-namespace TaxiDAL.Repositorie
+namespace TaxiDAL.Repositories
 {
     public class TaxiContext : DbContext
     {
@@ -11,12 +11,12 @@ namespace TaxiDAL.Repositorie
             Database.EnsureCreated();
         }
 
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarDto> Cars { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<ClientDto> Clients { get; set; }
 
-        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<DriverDto> Drivers { get; set; }
 
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDto> Orders { get; set; }
     }
 }

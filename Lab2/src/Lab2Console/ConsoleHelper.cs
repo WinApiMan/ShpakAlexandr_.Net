@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Taxi.ConsoleApplication
+namespace Taxi.ConsoleUI
 {
     public static class ConsoleHelper
     {
-        public static void ShowCars(IEnumerable<CarDto> cars)
+        public static void ShowCars(IEnumerable<Car> cars)
         {
             Console.Clear();
             Console.WriteLine("Goverment number | Model | Color | Registration number | Year of issue | Is repair");
@@ -17,7 +17,7 @@ namespace Taxi.ConsoleApplication
             Console.ReadKey();
         }
 
-        public static void ShowDrivers(IEnumerable<DriverDto> drivers)
+        public static void ShowDrivers(IEnumerable<Driver> drivers)
         {
             Console.Clear();
             Console.WriteLine($"Surname | Name | Patronymic | Call sign | DriverLicenseNumber | Date of issue of drivers license | Is on holiday | Is sick leave");
@@ -28,7 +28,7 @@ namespace Taxi.ConsoleApplication
             Console.ReadKey();
         }
 
-        public static void ShowOrders(IEnumerable<OrderDto> orders)
+        public static void ShowOrders(IEnumerable<Order> orders)
         {
             Console.Clear();
             Console.WriteLine($"Cost | Date | Distance | Discount | Is done");
@@ -39,7 +39,7 @@ namespace Taxi.ConsoleApplication
             Console.ReadKey();
         }
 
-        public static CarDto CreateCar()
+        public static Car CreateCar()
         {
             Console.Clear();
             Console.WriteLine("Enter government number:");
@@ -63,10 +63,10 @@ namespace Taxi.ConsoleApplication
             {
                 isRepair = false;
             }
-            return new CarDto(governmentNumber, model, color, yearOfIssue, registrationNumber, isRepair);
+            return new Car(governmentNumber, model, color, yearOfIssue, registrationNumber, isRepair);
         }
 
-        public static DriverDto CreateDriver()
+        public static Driver CreateDriver()
         {
             Console.Clear();
             Console.WriteLine("Enter name:");
@@ -103,10 +103,10 @@ namespace Taxi.ConsoleApplication
             {
                 isSickLeave = false;
             }
-            return new DriverDto(null, callSign, surname, name, patronymic, driverLicenseNumber, dateOfIssueOfDriversLicense, isSickLeave, isOnHoliday);
+            return new Driver(null, callSign, surname, name, patronymic, driverLicenseNumber, dateOfIssueOfDriversLicense, isSickLeave, isOnHoliday);
         }
 
-        public static OrderDto CreateOrder()
+        public static Order CreateOrder()
         {
             Console.Clear();
             Console.WriteLine("Enter client id:");
@@ -117,7 +117,7 @@ namespace Taxi.ConsoleApplication
             double distance = EnterDoubleNumber();
             Console.WriteLine("Enter discount");
             double discount = EnterDoubleNumber();
-            return new OrderDto(DateTime.Now, false, cost, distance, discount, null, clientId);
+            return new Order(DateTime.Now, false, cost, distance, discount, null, clientId);
         }
 
         public static int EnterNumber()

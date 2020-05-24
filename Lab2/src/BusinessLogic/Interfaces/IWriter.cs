@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Interfaces
 {
     public interface IWriter
     {
-        void Write<T>(IEnumerable<T> list, string path);
+        Task Write<T>(IEnumerable<T> list, string path);
     }
 }

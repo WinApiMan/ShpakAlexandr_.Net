@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E45772FA-10B8-4321-AD27-31C81066F13C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2Console", "src\Lab2Console\Lab2Console.csproj", "{153E83A1-40CF-4275-A3E5-122B4390CBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.ConsoleUI", "src\Lab2Console\Taxi.ConsoleUI.csproj", "{153E83A1-40CF-4275-A3E5-122B4390CBB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.DAL", "src\DataAccessLayer\Taxi.DAL.csproj", "{B79E5353-FB85-43CE-909E-D728CB2851B0}"
 EndProject

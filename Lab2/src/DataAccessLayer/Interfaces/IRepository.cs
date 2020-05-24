@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Taxi.DAL.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class, IEntity
     {
-        void Create(TEntity item);
+        Task Create(TEntity item);
 
-        void AddRange(IEnumerable<TEntity> list);
+        Task AddRange(IEnumerable<TEntity> list);
 
-        TEntity FindById(int id);
+        Task<TEntity> FindById(int id);
 
-        IQueryable<TEntity> Get();
+        Task<IEnumerable<TEntity>> Get();
 
-        IQueryable<TEntity> Get(Func<TEntity, bool> predicate);
+        Task Remove(TEntity item);
 
-        void Remove(TEntity item);
-
-        void Update(TEntity item);
+        Task Update(TEntity item);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Interfaces
 {
     public interface IReader
     {
-        IEnumerable<T> Read<T>(string path);
+        Task<IEnumerable<T>> Read<T>(string path);
     }
 }

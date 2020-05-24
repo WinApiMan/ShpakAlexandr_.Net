@@ -1,11 +1,8 @@
-﻿using System.Runtime.Serialization;
-
-namespace BusinessLogic.Models
+﻿namespace BusinessLogic.Models
 {
-    [DataContract]
-    public class ClientDto
+    public class Client
     {
-        public ClientDto(int id, string surname, string name, string patronymic)
+        public Client(int id, string surname, string name, string patronymic)
         {
             Id = id;
             Surname = surname;
@@ -13,16 +10,12 @@ namespace BusinessLogic.Models
             Patronymic = patronymic;
         }
 
-        [DataMember]
         public int Id { get; set; }
 
-        [DataMember]
         public string Surname { get; set; }
 
-        [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
         public string Patronymic { get; set; }
     }
 }

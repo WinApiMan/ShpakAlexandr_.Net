@@ -4,7 +4,7 @@ using Taxi.DAL.Interfaces;
 
 namespace Taxi.DAL.Models
 {
-    public class Driver : IEntity
+    public class DriverDto : IEntity
     {
         public int Id { get; set; }
 
@@ -26,8 +26,8 @@ namespace Taxi.DAL.Models
 
         public bool IsOnHoliday { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDto> Orders { get; set; }
 
-        public virtual Car Car { get; set; }
+        public virtual CarDto Car { get; set; }
     }
 }

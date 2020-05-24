@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Linq;
+using System.Threading.Tasks;
 using Taxi.DAL.Interfaces;
 using Taxi.DAL.Models;
 
@@ -10,59 +10,49 @@ namespace Taxi.BusinessLogic.Processings
 {
     public class OrderService
     {
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<OrderDto> _orderRepository;
 
         private readonly IMapper _mapper;
 
-        public OrderService(IRepository<Order> orderRepository, IMapper mapper)
+        public OrderService(IRepository<OrderDto> orderRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
         }
 
-        public bool AddOrder(OrderDto order)
+        public async Task AddOrder(Order order)
         {
-            var newOrder = _mapper.Map<Order>(order);
-            try
-            {
-                _orderRepository.Create(newOrder);
-                return true;
-            }
-            catch (DbException)
-            {
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var newOrder = _mapper.Map<OrderDto>(order);
+            await _orderRepository.Create(newOrder);
         }
 
-        public void DeleteOrder(int id)
+        public async Task DeleteOrder(int id)
         {
-            var order = _orderRepository.FindById(id);
-            _orderRepository.Remove(order);
+            var order = await _orderRepository.FindById(id);
+            await _orderRepository.Remove(order);
         }
 
-        public void UpdateOrder(OrderDto order)
+        public async Task UpdateOrder(Order order)
         {
-            var newOrder = _mapper.Map<Order>(order);
-            _orderRepository.Update(newOrder);
+            var newOrder = _mapper.Map<OrderDto>(order);
+            await _orderRepository.Update(newOrder);
         }
 
-        public IEnumerable<OrderDto> GetAll()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            return _mapper.Map<IEnumerable<OrderDto>>(_orderRepository.Get());
+            return _mapper.Map<IEnumerable<Order>>(await _orderRepository.Get());
         }
 
-        public IEnumerable<OrderDto> ActiveOrders()
+        public async Task<IEnumerable<Order>> ActiveOrders()
         {
-            return _mapper.Map<IEnumerable<OrderDto>>(_orderRepository.Get(e => e.IsDone));
+            var orders = await _orderRepository.Get();
+            return _mapper.Map<IEnumerable<Order>>(orders.Where(e => e.IsDone));
         }
 
-        public IEnumerable<OrderDto> InActiveOrders()
+        public async Task<IEnumerable<Order>> InActiveOrders()
         {
-            return _mapper.Map<IEnumerable<OrderDto>>(_orderRepository.Get(e => !e.IsDone));
+            var orders = await _orderRepository.Get();
+            return _mapper.Map<IEnumerable<Order>>(orders.Where(e => !e.IsDone));
         }
     }
 }

@@ -3,7 +3,7 @@ using Taxi.DAL.Interfaces;
 
 namespace Taxi.DAL.Models
 {
-    public class Client:IEntity
+    public class ClientDto:IEntity
     {
         public int Id { get; set; }
 
@@ -13,6 +13,6 @@ namespace Taxi.DAL.Models
 
         public string Patronymic { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDto> Orders { get; set; }
     }
 }
