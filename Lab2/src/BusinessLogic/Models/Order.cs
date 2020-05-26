@@ -5,17 +5,6 @@ namespace BusinessLogic.Models
 {
     public class Order
     {
-        public Order(DateTime date, bool isDone, double cost, double distance, double discount, int? driverId, int clientId)
-        {
-            Date = date;
-            IsDone = isDone;
-            Cost = cost;
-            Distance = distance;
-            Discount = discount;
-            DriverId = driverId;
-            ClientId = clientId;
-        }
-
         public int Id { get; set; }
 
         [Required]

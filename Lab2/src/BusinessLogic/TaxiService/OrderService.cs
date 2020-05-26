@@ -44,13 +44,13 @@ namespace Taxi.BusinessLogic.Processings
             return _mapper.Map<IEnumerable<Order>>(await _orderRepository.Get());
         }
 
-        public async Task<IEnumerable<Order>> ActiveOrders()
+        public async Task<IEnumerable<Order>> GetActiveOrders()
         {
             var orders = await _orderRepository.Get();
             return _mapper.Map<IEnumerable<Order>>(orders.Where(e => e.IsDone));
         }
 
-        public async Task<IEnumerable<Order>> InActiveOrders()
+        public async Task<IEnumerable<Order>> GetInActiveOrders()
         {
             var orders = await _orderRepository.Get();
             return _mapper.Map<IEnumerable<Order>>(orders.Where(e => !e.IsDone));

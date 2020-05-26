@@ -5,16 +5,6 @@ namespace BusinessLogic.Models
 {
     public class Car
     {
-        public Car(string governmentNumber, string model, string color, int yearOfIssue, string registrationNumber, bool isRepair)
-        {
-            GovernmentNumber = governmentNumber;
-            Model = model;
-            Color = color;
-            YearOfIssue = yearOfIssue;
-            RegistrationNumber = registrationNumber;
-            IsRepair = isRepair;
-        }
-
         public int Id { get; set; }
 
         [Required]

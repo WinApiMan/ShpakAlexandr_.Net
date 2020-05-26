@@ -224,6 +224,7 @@ namespace Taxi.ConsoleUI.TaxiServices
             Console.WriteLine("Enter the state of sick leave (on sick leave 1, otherwise 0)");
             state = Console.ReadLine();
             bool isSickLeave;
+
             if (state.Equals("1"))
             {
                 isSickLeave = true;
@@ -232,7 +233,20 @@ namespace Taxi.ConsoleUI.TaxiServices
             {
                 isSickLeave = false;
             }
-            return new Driver(null, callSign, surname, name, patronymic, driverLicenseNumber, dateOfIssueOfDriversLicense, isSickLeave, isOnHoliday);
+
+            var driver = new Driver()
+            {
+                CallSign = callSign,
+                Surname = surname,
+                Name = name,
+                Patronymic = patronymic,
+                DriverLicenseNumber = driverLicenseNumber,
+                DateOfIssueOfDriversLicense = dateOfIssueOfDriversLicense,
+                IsSickLeave = isSickLeave,
+                IsOnHoliday = isOnHoliday
+            };
+
+            return driver;
         }
     }
 }

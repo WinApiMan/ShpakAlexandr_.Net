@@ -110,7 +110,7 @@ namespace Taxi.ConsoleUI.TaxiServices
 
                     case (int)AdminsCarMenu.OnRepair:
                         {
-                            ShowCars(await _carProcessing.CarOnRepair());
+                            ShowCars(await _carProcessing.GetCarOnRepair());
                         }
                         break;
 
@@ -181,6 +181,7 @@ namespace Taxi.ConsoleUI.TaxiServices
             Console.WriteLine("Enter the state of the machine (repair 1, otherwise 0)");
             string chooseState = Console.ReadLine();
             bool isRepair;
+
             if (chooseState.Equals("1"))
             {
                 isRepair = true;
@@ -189,7 +190,18 @@ namespace Taxi.ConsoleUI.TaxiServices
             {
                 isRepair = false;
             }
-            return new Car(governmentNumber, model, color, yearOfIssue, registrationNumber, isRepair);
+
+            var car = new Car()
+            {
+                GovernmentNumber = governmentNumber,
+                Model = model,
+                Color = color,
+                YearOfIssue = yearOfIssue,
+                RegistrationNumber = registrationNumber,
+                IsRepair = isRepair
+            };
+
+            return car;
         }
     }
 }

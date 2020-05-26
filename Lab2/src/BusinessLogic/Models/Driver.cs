@@ -5,19 +5,6 @@ namespace BusinessLogic.Models
 {
     public class Driver
     {
-        public Driver(int? carId, int callSign, string surname, string name, string patronymic, string driverLicenseNumber, DateTime dateOfIssueOfDriversLicense, bool isSickLeave, bool isOnHoliday)
-        {
-            CarId = carId;
-            CallSign = callSign;
-            Surname = surname;
-            Name = name;
-            Patronymic = patronymic;
-            DriverLicenseNumber = driverLicenseNumber;
-            DateOfIssueOfDriversLicense = dateOfIssueOfDriversLicense;
-            IsSickLeave = isSickLeave;
-            IsOnHoliday = isOnHoliday;
-        }
-
         public int Id { get; set; }
 
         public int? CarId { get; set; }

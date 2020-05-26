@@ -6,7 +6,7 @@ namespace Taxi.BusinessLogic.Interfaces
 {
     public interface ICarService : IManager<Car>
     {
-        Task<IEnumerable<Car>> CarOnRepair();
+        Task<IEnumerable<Car>> GetCarOnRepair();
 
         Task<IEnumerable<Car>> GetOldCars(int age);
 

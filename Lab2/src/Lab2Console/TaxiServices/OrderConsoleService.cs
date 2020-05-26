@@ -52,13 +52,13 @@ namespace Taxi.ConsoleUI.TaxiServices
 
                     case (int)AdminsOrderMenu.ShowActive:
                         {
-                            ShowOrders(await _orderProcessing.ActiveOrders());
+                            ShowOrders(await _orderProcessing.GetActiveOrders());
                         }
                         break;
 
                     case (int)AdminsOrderMenu.ShowInactive:
                         {
-                            ShowOrders(await _orderProcessing.InActiveOrders());
+                            ShowOrders(await _orderProcessing.GetInActiveOrders());
                         }
                         break;
 
@@ -132,7 +132,18 @@ namespace Taxi.ConsoleUI.TaxiServices
             double distance = ConsoleHelper.EnterDoubleNumber();
             Console.WriteLine("Enter discount");
             double discount = ConsoleHelper.EnterDoubleNumber();
-            return new Order(DateTime.Now, false, cost, distance, discount, null, clientId);
+
+            var order = new Order()
+            {
+                Date = DateTime.Now,
+                IsDone = false,
+                Cost = cost,
+                Distance = distance,
+                Discount = discount,
+                ClientId = clientId
+            };
+
+            return order;
         }
     }
 }

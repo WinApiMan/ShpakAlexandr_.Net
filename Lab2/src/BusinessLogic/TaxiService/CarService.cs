@@ -63,7 +63,7 @@ namespace Taxi.BusinessLogic.Processings
             return _mapper.Map<IEnumerable<Car>>(await _carRepository.Get());
         }
 
-        public async Task<IEnumerable<Car>> CarOnRepair()
+        public async Task<IEnumerable<Car>> GetCarOnRepair()
         {
             var cars = await _carRepository.Get();
             return _mapper.Map<IEnumerable<Car>>(cars.Where(e => e.IsRepair));

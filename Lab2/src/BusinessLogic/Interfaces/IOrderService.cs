@@ -6,8 +6,8 @@ namespace Taxi.BusinessLogic.Interfaces
 {
     public interface IOrderService : IManager<Order>
     {
-        Task<IEnumerable<Order>> ActiveOrders();
+        Task<IEnumerable<Order>> GetActiveOrders();
 
-        Task<IEnumerable<Order>> InActiveOrders();
+        Task<IEnumerable<Order>> GetInActiveOrders();
     }
 }
