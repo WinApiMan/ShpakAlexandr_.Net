@@ -11,7 +11,7 @@ using Taxi.ConsoleUI.Enums;
 using Taxi.ConsoleUI.Interfaces;
 using ILogger = NLog.ILogger;
 
-namespace Taxi.ConsoleUI.TaxiServices
+namespace Taxi.ConsoleUI.Services
 {
     public class CarConsoleService : IConsoleService<CarConsoleService>
     {

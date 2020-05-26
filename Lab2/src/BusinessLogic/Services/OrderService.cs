@@ -7,7 +7,7 @@ using Taxi.BusinessLogic.Interfaces;
 using Taxi.DAL.Interfaces;
 using Taxi.DAL.Models;
 
-namespace Taxi.BusinessLogic.Processings
+namespace Taxi.BusinessLogic.Services
 {
     public class OrderService : IOrderService
     {

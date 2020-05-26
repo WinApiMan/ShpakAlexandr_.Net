@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Taxi.ConsoleUI.Configuration;
 using Taxi.ConsoleUI.Interfaces;
-using Taxi.ConsoleUI.TaxiServices;
+using Taxi.ConsoleUI.Services;
 
 namespace Taxi.ConsoleUI
 {

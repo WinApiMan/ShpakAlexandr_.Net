@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Taxi.ConsoleUI.Enums;
 using Taxi.ConsoleUI.Interfaces;
 
-namespace Taxi.ConsoleUI.TaxiServices
+namespace Taxi.ConsoleUI.Services
 {
     public class AdminConsoleService : IConsoleService<AdminConsoleService>
     {

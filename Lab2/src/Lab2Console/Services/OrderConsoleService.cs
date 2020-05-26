@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using Taxi.BusinessLogic.Processings;
+using Taxi.BusinessLogic.Services;
 using Taxi.BusinessLogic.Validations;
 using Taxi.ConsoleUI.Enums;
 using Taxi.ConsoleUI.Interfaces;
 using ILogger = NLog.ILogger;
 
-namespace Taxi.ConsoleUI.TaxiServices
+namespace Taxi.ConsoleUI.Services
 {
     public class OrderConsoleService : IConsoleService<OrderConsoleService>
     {
