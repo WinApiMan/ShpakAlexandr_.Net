@@ -8,11 +8,11 @@ namespace TaxiDAL.Repositories
 {
     public class TaxiRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbContext _context;
+        private TaxiContext _context;
 
         private readonly DbSet<TEntity> _dbSet;
 
-        public TaxiRepository(DbContext context)
+        public TaxiRepository(TaxiContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();
