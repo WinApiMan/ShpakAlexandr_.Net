@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Taxi.BusinessLogic.Interfaces;
@@ -25,86 +25,94 @@ namespace Taxi.WebUI.Controllers
             _mapper = mapper;
         }
 
-        // GET: Car
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Cars()
         {
             var carList = _mapper.Map<IEnumerable<CarViewModel>>(await _carService.GetAll());
             return View(carList);
         }
 
-        // GET: Car/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Car/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Car/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CarViewModel car)
+        public async Task<ActionResult> Create(CarViewModel carViewModel)
         {
             try
             {
-                var newCar = _mapper.Map<Car>(car);
-                _carService.Add(newCar);
+                var car = _mapper.Map<Car>(carViewModel);
+                if (await _carService.UniquenessCheck(car))
+                {
+                    await _carService.Add(car);
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception exception)
             {
-                return View(car);
+                _logger.LogError($"Car create error:{exception.Message}");
+                return View(carViewModel);
             }
         }
 
-        // GET: Car/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var car = await _carService.FindById(id);
+            var carViewModel = _mapper.Map<CarViewModel>(car);
+            return View(carViewModel);
         }
 
-        // POST: Car/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(CarViewModel carViewModel)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                var car = _mapper.Map<Car>(carViewModel);
+                await _carService.Update(car);
+                return RedirectToAction(nameof(Cars));
             }
-            catch
+            catch (Exception exception)
             {
+                _logger.LogError($"Car update error:{exception.Message}");
                 return View();
             }
         }
 
-        // GET: Car/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var car = await _carService.FindById(id);
+            var carViewModel = _mapper.Map<CarViewModel>(car);
+            return View(carViewModel);
         }
 
-        // POST: Car/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(CarViewModel carViewModel)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                await _carService.Delete(carViewModel.Id);
+                return RedirectToAction(nameof(Cars));
             }
-            catch
+            catch (Exception exception)
             {
+                _logger.LogError($"Car delete error:{exception.Message}");
                 return View();
             }
+        }
+
+        public async Task<ActionResult> CarsOnRepair()
+        {
+            var carsList = _mapper.Map<IEnumerable<CarViewModel>>(await _carService.GetCarsOnRepair());
+            return View(carsList);
+        }
+
+        public async Task<ActionResult> NewCars(int age)
+        {
+            var carsList = _mapper.Map<IEnumerable<CarViewModel>>(await _carService.GetNewCars(age));
+            return View(carsList);
         }
     }
 }

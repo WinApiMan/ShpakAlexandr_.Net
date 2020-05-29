@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Taxi.WebUI.ViewModels.CarViewModel>
+
+@{
+    ViewData["Title"] = "Cars";
+}
+
+<h1>Cars</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="CarsOnRepair">Cars on repair</a>
+</p>
+<form asp-action="NewCars">
+    Age
+    <input type="number" name="age" />
+    <input type="submit" value="New cars"/>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Government number
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Year of issue
+            </th>
+            <th>
+                Registration number
+            </th>
+            <th>
+                Is repair
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.GovernmentNumber
+                </td>
+                <td>
+                    @item.Model
+                </td>
+                <td>
+                    @item.Color
+                </td>
+                <td>
+                    @item.YearOfIssue
+                </td>
+                <td>
+                    @item.RegistrationNumber
+                </td>
+                <td>
+                    @item.IsRepair
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

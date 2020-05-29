@@ -51,23 +51,5 @@ namespace TaxiDAL.Repositories
             await _dbSet.AddRangeAsync(list);
             await _context.SaveChangesAsync();
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_context != null)
-                {
-                    _context.Dispose();
-                    _context = null;
-                }
-            }
-        }
     }
 }

@@ -4,6 +4,8 @@ namespace Taxi.WebUI.ViewModels
 {
     public class CarViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(15, MinimumLength = 8, ErrorMessage = "Number length must be between 8 and 15")]
         public string GovernmentNumber { get; set; }
