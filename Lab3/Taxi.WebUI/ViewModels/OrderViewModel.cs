@@ -11,6 +11,7 @@ namespace Taxi.WebUI.ViewModels
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "Is done")]
         public bool IsDone { get; set; }
 
         [Required]
@@ -27,7 +28,6 @@ namespace Taxi.WebUI.ViewModels
 
         public int? DriverId { get; set; }
 
-        [Required]
         public int ClientId { get; set; }
 
         public DriverViewModel Driver { get; set; }

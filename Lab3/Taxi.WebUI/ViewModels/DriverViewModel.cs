@@ -14,6 +14,7 @@ namespace Taxi.WebUI.ViewModels
 
         [Required]
         [Range(1, 1000, ErrorMessage = "Call sing must be between 1 and 1000")]
+        [Display(Name = "Call sign")]
         public int CallSign { get; set; }
 
         [Required]
@@ -30,15 +31,19 @@ namespace Taxi.WebUI.ViewModels
 
         [Required]
         [StringLength(30, MinimumLength = 5, ErrorMessage = "Driver license number must be between 5 and 30")]
+        [Display(Name = "Driver license number")]
         public string DriverLicenseNumber { get; set; }
 
         [Required]
+        [Display(Name = "Date of issue of drivers license")]
         public DateTime DateOfIssueOfDriversLicense { get; set; }
 
         [Required]
+        [Display(Name = "Is sick leave")]
         public bool IsSickLeave { get; set; }
 
         [Required]
+        [Display(Name = "Is on holiday")]
         public bool IsOnHoliday { get; set; }
 
         public CarViewModel Car { get; set; }
