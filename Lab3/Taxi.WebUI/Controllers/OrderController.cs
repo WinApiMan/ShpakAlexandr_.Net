@@ -1,42 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using BusinessLogic.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Taxi.BusinessLogic.Interfaces;
+using Taxi.WebUI.ViewModels;
 
 namespace Taxi.WebUI.Controllers
 {
     public class OrderController : Controller
     {
-        // GET: Order
-        public ActionResult Orders()
+        private readonly IDriverService _driverService;
+
+        private readonly IOrderService _orderService;
+
+        private readonly ILogger<CarController> _logger;
+
+        private readonly IMapper _mapper;
+
+        public OrderController(IDriverService driverService, IOrderService orderService, ILogger<CarController> logger, IMapper mapper)
         {
-            return View();
+            _driverService = driverService;
+            _orderService = orderService;
+            _logger = logger;
+            _mapper = mapper;
         }
 
-        // GET: Order/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Orders()
         {
-            return View();
+            var ordersList = _mapper.Map<IEnumerable<OrderViewModel>>(await _orderService.GetAll());
+
+            foreach (var item in ordersList)
+            {
+                try
+                {
+                    item.Driver = _mapper.Map<DriverViewModel>(await _driverService.FindById((int)item.DriverId));
+                }
+                catch (InvalidOperationException exception)
+                {
+                    _logger.LogError($"Find order error:{exception.Message}");
+                }
+            }
+            return View(ordersList);
         }
 
-        // GET: Order/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Order/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Orders));
             }
             catch
             {
@@ -44,50 +66,79 @@ namespace Taxi.WebUI.Controllers
             }
         }
 
-        // GET: Order/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var order = await _orderService.FindById(id);
+
+            if (order != null)
+            {
+                var orderViewModel = _mapper.Map<OrderViewModel>(order);
+                return View(orderViewModel);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Orders));
+            }
         }
 
-        // POST: Order/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(OrderViewModel orderViewModel)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                var order = _mapper.Map<Order>(orderViewModel);
+                await _orderService.Update(order);
+                return RedirectToAction(nameof(Orders));
             }
-            catch
+            catch (Exception exception)
             {
+                _logger.LogError($"Order update error:{exception.Message}");
                 return View();
             }
         }
 
-        // GET: Order/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var order = await _orderService.FindById(id);
+
+            if (order != null)
+            {
+                var orderViewModel = _mapper.Map<OrderViewModel>(order);
+                return View(orderViewModel);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Orders));
+            }
         }
 
-        // POST: Order/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(OrderViewModel orderViewModel)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                await _orderService.Delete(orderViewModel.Id);
+                return RedirectToAction(nameof(Orders));
             }
-            catch
+            catch (Exception exception)
             {
+                _logger.LogError($"Car driver error:{exception.Message}");
                 return View();
             }
+        }
+
+        public async Task<ActionResult> ActiveOrders()
+        {
+            var ordersList = _mapper.Map<IEnumerable<OrderViewModel>>(await _orderService.GetActiveOrders());
+            return View(ordersList);
+        }
+
+        public async Task<ActionResult> InActiveOrders()
+        {
+            var ordersList = _mapper.Map<IEnumerable<OrderViewModel>>(await _orderService.GetInActiveOrders());
+            return View(ordersList);
         }
     }
 }

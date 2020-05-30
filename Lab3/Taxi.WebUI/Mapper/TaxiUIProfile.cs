@@ -10,6 +10,7 @@ namespace Taxi.WebUI.Mapper
         {
             CreateMap<CarViewModel, Car>().ReverseMap();
             CreateMap<DriverViewModel, Driver>().ReverseMap();
+            CreateMap<OrderViewModel, Order>().ReverseMap();
         }
     }
 }

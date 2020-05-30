@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Taxi.WebUI.ViewModels
 {
@@ -11,7 +8,6 @@ namespace Taxi.WebUI.ViewModels
         public int Id { get; set; }
 
         [Required]
-        [Range(typeof(DateTime), "1/1/1950", "1/1/2100", ErrorMessage = "Date is out of Range")]
         public DateTime Date { get; set; }
 
         [Required]
@@ -33,5 +29,9 @@ namespace Taxi.WebUI.ViewModels
 
         [Required]
         public int ClientId { get; set; }
+
+        public DriverViewModel Driver { get; set; }
+
+        public ClientViewModel Client { get; set; }
     }
 }
