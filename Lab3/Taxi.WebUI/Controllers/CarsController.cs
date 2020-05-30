@@ -12,15 +12,15 @@ using Taxi.WebUI.ViewModels;
 
 namespace Taxi.WebUI.Controllers
 {
-    public class CarController : Controller
+    public class CarsController : Controller
     {
         private readonly ICarService _carService;
 
-        private readonly ILogger<CarController> _logger;
+        private readonly ILogger<CarsController> _logger;
 
         private readonly IMapper _mapper;
 
-        public CarController(ICarService carService, ILogger<CarController> logger, IMapper mapper)
+        public CarsController(ICarService carService, ILogger<CarsController> logger, IMapper mapper)
         {
             _carService = carService;
             _logger = logger;

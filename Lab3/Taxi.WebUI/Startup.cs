@@ -64,18 +64,18 @@ namespace Taxi.WebUI
             }
             else
             {
-                app.UseExceptionHandler("/Car/Error");
+                app.UseExceptionHandler("/Cars/Error");
                 
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Car}/{action=Cars}");
+                endpoints.MapControllerRoute("default", "{controller=Cars}/{action=Cars}");
             });
         }
 

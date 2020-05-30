@@ -8,15 +8,15 @@
     },
     {
       "library": "jquery@3.5.0",
-      "destination": "wwwroot/lib/dist/jquery/"
+      "destination": "wwwroot/lib/jquery/"
     },
     {
       "library": "jquery-validate@1.19.1",
-      "destination": "wwwroot/lib/dist/jquery-validation/"
+      "destination": "wwwroot/lib/jquery-validation/"
     },
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
-      "destination": "wwwroot/lib/dist/jquery-validation-unobtrusive/"
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     }
   ]
 }

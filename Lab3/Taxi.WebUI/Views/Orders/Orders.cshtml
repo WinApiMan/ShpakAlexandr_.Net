@@ -1,11 +1,15 @@
 ﻿@model IEnumerable<Taxi.WebUI.ViewModels.OrderViewModel>
 
 @{
-    ViewData["Title"] = "InActiveOrders";
+    ViewData["Title"] = "All orders";
 }
 
-<h1>Get inactive orders</h1>
+<h1>Orders and driver call sign</h1>
 
+<p>
+    <a asp-action="ActiveOrders">Active orders</a>
+    <a asp-action="InActiveOrders">In active orders</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -24,6 +28,10 @@
             <th>
                 Discount
             </th>
+            <th>
+                Driver call sign
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +43,12 @@
                 <td asp-display-for="@item.Cost"></td>
                 <td asp-display-for="@item.Distance"></td>
                 <td asp-display-for="@item.Discount"></td>
+                <td asp-display-for="@item.Driver.CallSign"></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
+                </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-action="Orders">Back to List</a>
-

@@ -11,17 +11,17 @@ using Taxi.WebUI.ViewModels;
 
 namespace Taxi.WebUI.Controllers
 {
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
         private readonly IDriverService _driverService;
 
         private readonly IOrderService _orderService;
 
-        private readonly ILogger<CarController> _logger;
+        private readonly ILogger<CarsController> _logger;
 
         private readonly IMapper _mapper;
 
-        public OrderController(IDriverService driverService, IOrderService orderService, ILogger<CarController> logger, IMapper mapper)
+        public OrdersController(IDriverService driverService, IOrderService orderService, ILogger<CarsController> logger, IMapper mapper)
         {
             _driverService = driverService;
             _orderService = orderService;
