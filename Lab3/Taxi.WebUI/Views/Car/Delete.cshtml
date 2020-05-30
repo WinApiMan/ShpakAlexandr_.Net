@@ -11,44 +11,32 @@
     <h4>Car</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Government number
         </dt>
-        <dd class = "col-sm-10">
-            @Model.GovernmentNumber
-        </dd>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10" asp-display-for="@Model.GovernmentNumber"></dd>
+        <dt class="col-sm-2">
             Model
         </dt>
-        <dd class = "col-sm-10">
-            @Model.Model
-        </dd>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10" asp-display-for="@Model.Model"></dd>
+        <dt class="col-sm-2">
             Color
         </dt>
-        <dd class = "col-sm-10">
-            @Model.Color
-        </dd>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10" asp-display-for="@Model.Color"></dd>
+        <dt class="col-sm-2">
             Year of issue
         </dt>
-        <dd class = "col-sm-10">
-            @Model.YearOfIssue
-        </dd>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10" asp-display-for="@Model.YearOfIssue"></dd>
+        <dt class="col-sm-2">
             Registration number
         </dt>
-        <dd class = "col-sm-10">
-            @Model.RegistrationNumber
-        </dd>
-        <dt class = "col-sm-2">
+        <dd class="col-sm-10" asp-display-for="@Model.RegistrationNumber"></dd>
+        <dt class="col-sm-2">
             Is repair
         </dt>
-        <dd class = "col-sm-10">
-            @Model.IsRepair
-        </dd>
+        <dd class="col-sm-10" asp-display-for="@Model.IsRepair"></dd>
     </dl>
-    
+
     <form asp-action="Delete" asp-route-id="@Model.Id">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Cars">Back to List</a>

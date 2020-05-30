@@ -22,7 +22,7 @@ namespace Taxi.WebUI
             .ConfigureLogging(logging =>
             {
                 logging.ClearProviders();
-                logging.AddFile("StoreApp-{Date}.txt", LogLevel.Error);
+                logging.AddFile("bin/StoreApp-{Date}.txt", LogLevel.Error);
             })
             .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }

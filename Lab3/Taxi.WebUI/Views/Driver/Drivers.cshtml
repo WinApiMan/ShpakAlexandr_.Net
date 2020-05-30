@@ -14,37 +14,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CallSign)
+                Call sign
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Surname)
+                Surname
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Patronymic)
+                Patronymic
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DriverLicenseNumber)
+                Driver license number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfIssueOfDriversLicense)
+                Date of issue of drivers license
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsSickLeave)
+                Is sick leave
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsOnHoliday)
+                Is on holiday
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car.GovernmentNumber)
+                Car government number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car.Model)
+                Car model
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car.YearOfIssue)
+                Car yearOfIssue
             </th>
             <th></th>
         </tr>
@@ -53,42 +53,20 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td asp-display-for="@item.CallSign"></td>
+                <td asp-display-for="@item.Surname"></td>
+                <td asp-display-for="@item.Name"></td>
+                <td asp-display-for="@item.Patronymic"></td>
+                <td asp-display-for="@item.DriverLicenseNumber"></td>
+                <td asp-display-for="@item.DateOfIssueOfDriversLicense"></td>
+                <td asp-display-for="@item.IsSickLeave"></td>
+                <td asp-display-for="@item.IsOnHoliday"></td>
+                <td asp-display-for="@item.Car.GovernmentNumber"></td>
+                <td asp-display-for="@item.Car.Model"></td>
+                <td asp-display-for="@item.Car.YearOfIssue"></td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CallSign)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Surname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Patronymic)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DriverLicenseNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfIssueOfDriversLicense)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsSickLeave)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsOnHoliday)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Car.GovernmentNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Car.Model)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Car.YearOfIssue)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

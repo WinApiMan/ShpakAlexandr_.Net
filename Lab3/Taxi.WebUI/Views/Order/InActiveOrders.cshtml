@@ -10,19 +10,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDone)
+                Is done
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cost)
+                Cost
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Distance)
+                Distance
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Discount)
+                Discount
             </th>
         </tr>
     </thead>
@@ -30,21 +30,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Distance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
-                </td>
+                <td asp-display-for="@item.Date"></td>
+                <td asp-display-for="@item.IsDone"></td>
+                <td asp-display-for="@item.Cost"></td>
+                <td asp-display-for="@item.Distance"></td>
+                <td asp-display-for="@item.Discount"></td>
             </tr>
         }
     </tbody>

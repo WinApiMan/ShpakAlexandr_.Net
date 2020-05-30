@@ -64,7 +64,7 @@ namespace Taxi.WebUI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Car/Error");
                 
                 app.UseHsts();
             }

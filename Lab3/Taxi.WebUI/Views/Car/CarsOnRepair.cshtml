@@ -10,52 +10,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                GovernmentNumber
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GovernmentNumber)
+                Model
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Model)
+                Color
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Color)
+                Year of issue
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.YearOfIssue)
+                Registration number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsRepair)
+                Is repair
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GovernmentNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearOfIssue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegistrationNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsRepair)
-            </td>
+            <td asp-display-for="@item.GovernmentNumber"></td>
+            <td asp-display-for="@item.Model"></td>
+            <td asp-display-for="@item.Color"></td>
+            <td asp-display-for="@item.YearOfIssue"></td>
+            <td asp-display-for="@item.RegistrationNumber"></td>
+            <td asp-display-for="@item.IsRepair"></td>
         </tr>
 }
     </tbody>

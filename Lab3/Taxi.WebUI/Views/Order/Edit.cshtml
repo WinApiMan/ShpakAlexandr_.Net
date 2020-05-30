@@ -19,7 +19,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDone" /> @Html.DisplayNameFor(model => model.IsDone)
+                    <input class="form-check-input" asp-for="IsDone" asp-display-name-for="IsDone" />
                 </label>
             </div>
             <div class="form-group">
@@ -38,8 +38,8 @@
                 <span asp-validation-for="Discount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.Hidden("DriverId", Model.DriverId)
-                @Html.Hidden("ClientId", Model.ClientId)
+                <input type="hidden" name="DriverId" value="@Model.DriverId" />
+                <input type="hidden" name="ClientId" value="@Model.ClientId" />
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Taxi.BusinessLogic.Interfaces;
+using Taxi.WebUI.Models;
 using Taxi.WebUI.ViewModels;
 
 namespace Taxi.WebUI.Controllers
@@ -128,6 +130,12 @@ namespace Taxi.WebUI.Controllers
         {
             var carsList = _mapper.Map<IEnumerable<CarViewModel>>(await _carService.GetNewCars(age));
             return View(carsList);
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

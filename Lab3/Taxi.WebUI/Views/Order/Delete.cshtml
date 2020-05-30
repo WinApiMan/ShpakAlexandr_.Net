@@ -11,36 +11,16 @@
     <h4>Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Distance)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Distance)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
+        <dt class = "col-sm-2">Date</dt>
+        <dd class = "col-sm-10" asp-display-for="Date"></dd>
+        <dt class = "col-sm-2">Is done</dt>
+        <dd class = "col-sm-10" asp-display-for="IsDone"></dd>
+        <dt class = "col-sm-2">Cost</dt>
+        <dd class = "col-sm-10" asp-display-for="Cost"></dd>
+        <dt class = "col-sm-2">Distance</dt>
+        <dd class = "col-sm-10" asp-display-for="Distance"></dd>
+        <dt class = "col-sm-2">Discount</dt>
+        <dd class = "col-sm-10" asp-display-for="Discount"></dd>
     </dl>
     
     <form asp-action="Delete" asp-route-id="@Model.Id">

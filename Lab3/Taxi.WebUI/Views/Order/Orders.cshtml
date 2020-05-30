@@ -14,22 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDone)
+                Is done
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cost)
+                Cost
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Distance)
+                Distance
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Discount)
+                Discount
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Driver.CallSign)
+                Driver call sign
             </th>
             <th></th>
         </tr>
@@ -38,27 +38,15 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td asp-display-for="@item.Date"></td>
+                <td asp-display-for="@item.IsDone"></td>
+                <td asp-display-for="@item.Cost"></td>
+                <td asp-display-for="@item.Distance"></td>
+                <td asp-display-for="@item.Discount"></td>
+                <td asp-display-for="@item.Driver.CallSign"></td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Distance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Driver.CallSign)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
                 </td>
             </tr>
         }
