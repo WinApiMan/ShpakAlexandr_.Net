@@ -47,7 +47,7 @@ namespace Taxi.WebUI.Controllers
                 {
                     await _carService.Add(car);
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Cars));
             }
             catch (Exception exception)
             {
@@ -59,8 +59,16 @@ namespace Taxi.WebUI.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var car = await _carService.FindById(id);
-            var carViewModel = _mapper.Map<CarViewModel>(car);
-            return View(carViewModel);
+
+            if (car != null)
+            {
+                var carViewModel = _mapper.Map<CarViewModel>(car);
+                return View(carViewModel);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Cars));
+            }
         }
 
         [HttpPost]
@@ -83,8 +91,15 @@ namespace Taxi.WebUI.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var car = await _carService.FindById(id);
-            var carViewModel = _mapper.Map<CarViewModel>(car);
-            return View(carViewModel);
+            if (car != null)
+            {
+                var carViewModel = _mapper.Map<CarViewModel>(car);
+                return View(carViewModel);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Cars));
+            }
         }
 
         [HttpPost]

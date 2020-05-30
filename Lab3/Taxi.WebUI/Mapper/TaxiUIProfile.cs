@@ -9,6 +9,7 @@ namespace Taxi.WebUI.Mapper
         public TaxiUIProfile()
         {
             CreateMap<CarViewModel, Car>().ReverseMap();
+            CreateMap<DriverViewModel, Driver>().ReverseMap();
         }
     }
 }

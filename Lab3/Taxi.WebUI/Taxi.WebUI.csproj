@@ -13,6 +13,10 @@
     <ProjectReference Include="..\..\Lab2\src\BusinessLogic\Taxi.BusinessLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Order\" />
+  </ItemGroup>
+
 
 
 </Project>
