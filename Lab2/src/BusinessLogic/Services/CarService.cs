@@ -49,7 +49,14 @@ namespace Taxi.BusinessLogic.Services
 
         public async Task<Car> FindById(int id)
         {
-            return _mapper.Map<Car>(await _carRepository.FindById(id));
+            if (id > 0)
+            {
+                return _mapper.Map<Car>(await _carRepository.FindById(id));
+            }
+            else
+            {
+                throw new ArgumentException("Id less then zero");
+            }
         }
 
         public async Task Update(Car car)

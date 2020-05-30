@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,7 +59,14 @@ namespace Taxi.BusinessLogic.Services
 
         public async Task<Order> FindById(int id)
         {
-            return _mapper.Map<Order>(await _orderRepository.FindById(id));
+            if (id > 0)
+            {
+                return _mapper.Map<Order>(await _orderRepository.FindById(id));
+            }
+            else
+            {
+                throw new ArgumentException("Id less then zero");
+            }
         }
     }
 }

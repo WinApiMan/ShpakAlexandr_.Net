@@ -60,15 +60,15 @@ namespace Taxi.WebUI.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            var car = await _carService.FindById(id);
-
-            if (car != null)
+            try
             {
+                var car = await _carService.FindById(id);
                 var carViewModel = _mapper.Map<CarViewModel>(car);
                 return View(carViewModel);
             }
-            else
+            catch(ArgumentException exception)
             {
+                _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Cars));
             }
         }
@@ -92,14 +92,15 @@ namespace Taxi.WebUI.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
-            var car = await _carService.FindById(id);
-            if (car != null)
+            try
             {
+                var car = await _carService.FindById(id);
                 var carViewModel = _mapper.Map<CarViewModel>(car);
                 return View(carViewModel);
             }
-            else
+            catch(ArgumentException exception)
             {
+                _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Cars));
             }
         }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -75,15 +74,15 @@ namespace Taxi.WebUI.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            var driver = await _driverService.FindById(id);
-
-            if (driver != null)
+            try
             {
+                var driver = await _driverService.FindById(id);
                 var driverViewModel = _mapper.Map<DriverViewModel>(driver);
                 return View(driverViewModel);
             }
-            else
+            catch (ArgumentException exception)
             {
+                _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Drivers));
             }
         }
@@ -98,7 +97,7 @@ namespace Taxi.WebUI.Controllers
                 await _driverService.Update(driver);
                 return RedirectToAction(nameof(Drivers));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogError($"Driver update error:{exception.Message}");
                 return View();
@@ -107,14 +106,15 @@ namespace Taxi.WebUI.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
-            var driver = await _driverService.FindById(id);
-            if (driver != null)
+            try
             {
+                var driver = await _driverService.FindById(id);
                 var driverViewModel = _mapper.Map<DriverViewModel>(driver);
                 return View(driverViewModel);
             }
-            else
+            catch(ArgumentException exception)
             {
+                _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Drivers));
             }
         }
@@ -151,7 +151,7 @@ namespace Taxi.WebUI.Controllers
                 await _driverService.GiveCar(driver.Id, car.Id);
                 return RedirectToAction(nameof(Drivers));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogError($"Give car error:{exception.Message}");
                 return View();
