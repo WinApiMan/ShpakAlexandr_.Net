@@ -42,7 +42,14 @@ namespace Taxi.BusinessLogic.Services
 
         public async Task<Driver> FindById(int id)
         {
-            return _mapper.Map<Driver>(await _driverRepository.FindById(id));
+            if (id > 0)
+            {
+                return _mapper.Map<Driver>(await _driverRepository.FindById(id));
+            }
+            else
+            {
+                throw new ArgumentException("Id less then zero");
+            }
         }
 
         public async Task<IEnumerable<Driver>> GetAll()
