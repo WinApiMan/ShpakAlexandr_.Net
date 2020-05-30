@@ -74,7 +74,7 @@ namespace Taxi.WebUI.Controllers
                 var orderViewModel = _mapper.Map<OrderViewModel>(order);
                 return View(orderViewModel);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Orders));
@@ -106,7 +106,7 @@ namespace Taxi.WebUI.Controllers
                 var orderViewModel = _mapper.Map<OrderViewModel>(order);
                 return View(orderViewModel);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Orders));

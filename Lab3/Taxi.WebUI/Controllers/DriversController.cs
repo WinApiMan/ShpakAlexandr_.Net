@@ -112,7 +112,7 @@ namespace Taxi.WebUI.Controllers
                 var driverViewModel = _mapper.Map<DriverViewModel>(driver);
                 return View(driverViewModel);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Drivers));

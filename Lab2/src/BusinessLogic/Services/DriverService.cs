@@ -52,40 +52,40 @@ namespace Taxi.BusinessLogic.Services
             }
         }
 
-    public async Task<IEnumerable<Driver>> GetAll()
-    {
-        return _mapper.Map<IEnumerable<Driver>>(await _driverRepository.Get());
-    }
-
-    public async Task<Driver> FindByDriverLicenseNumber(string licenseNumber)
-    {
-        var drivers = await _driverRepository.Get();
-        return _mapper.Map<Driver>(drivers.FirstOrDefault(e => e.DriverLicenseNumber.Equals(licenseNumber)));
-    }
-
-    public async Task GiveCar(int driverId, int carId)
-    {
-        var driver = await _driverRepository.FindById(driverId);
-        driver.CarId = carId;
-        await _driverRepository.Update(driver);
-    }
-
-    public async Task<bool> UniquenessCheck(Driver driver)
-    {
-        var drivers = await _driverRepository.Get();
-        try
+        public async Task<IEnumerable<Driver>> GetAll()
         {
-            var resultOfFind = drivers.Single(e => e.DriverLicenseNumber.Equals(driver.DriverLicenseNumber) || e.DateOfIssueOfDriversLicense.Equals(driver.DateOfIssueOfDriversLicense) || e.CallSign == driver.CallSign);
-            return false;
+            return _mapper.Map<IEnumerable<Driver>>(await _driverRepository.Get());
         }
-        catch (ArgumentNullException)
+
+        public async Task<Driver> FindByDriverLicenseNumber(string licenseNumber)
         {
-            return true;
+            var drivers = await _driverRepository.Get();
+            return _mapper.Map<Driver>(drivers.FirstOrDefault(e => e.DriverLicenseNumber.Equals(licenseNumber)));
         }
-        catch (InvalidOperationException)
+
+        public async Task GiveCar(int driverId, int carId)
         {
-            return true;
+            var driver = await _driverRepository.FindById(driverId);
+            driver.CarId = carId;
+            await _driverRepository.Update(driver);
+        }
+
+        public async Task<bool> UniquenessCheck(Driver driver)
+        {
+            var drivers = await _driverRepository.Get();
+            try
+            {
+                var resultOfFind = drivers.Single(e => e.DriverLicenseNumber.Equals(driver.DriverLicenseNumber) || e.DateOfIssueOfDriversLicense.Equals(driver.DateOfIssueOfDriversLicense) || e.CallSign == driver.CallSign);
+                return false;
+            }
+            catch (ArgumentNullException)
+            {
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                return true;
+            }
         }
     }
-}
 }

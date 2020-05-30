@@ -66,7 +66,7 @@ namespace Taxi.WebUI.Controllers
                 var carViewModel = _mapper.Map<CarViewModel>(car);
                 return View(carViewModel);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Cars));
@@ -98,7 +98,7 @@ namespace Taxi.WebUI.Controllers
                 var carViewModel = _mapper.Map<CarViewModel>(car);
                 return View(carViewModel);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogError(exception.Message);
                 return RedirectToAction(nameof(Cars));
