@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using Taxi.WebUI.ViewModels;
 
 namespace Taxi.WebUI.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IDriverService _driverService;
