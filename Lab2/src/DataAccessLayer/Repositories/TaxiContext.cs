@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Taxi.DAL.Models;
 
 namespace TaxiDAL.Repositories
 {
-    public class TaxiContext : DbContext
+    public class TaxiContext : IdentityDbContext<IdentityUser>
     {
         public TaxiContext(DbContextOptions<TaxiContext> options)
             : base(options)
