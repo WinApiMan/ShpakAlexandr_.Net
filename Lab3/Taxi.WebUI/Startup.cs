@@ -38,10 +38,7 @@ namespace Taxi.WebUI
             .UseSqlServer(Configuration.GetConnectionString("TaxiConnection"))
             .UseLoggerFactory(TaxiLoggerFactory(Configuration)));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            {
-                options.Password.RequireNonAlphanumeric = false;
-            }).AddEntityFrameworkStores<TaxiContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<TaxiContext>();
 
             services.AddTransient<IRepository<CarDto>, TaxiRepository<CarDto>>();
             services.AddTransient<IRepository<ClientDto>, TaxiRepository<ClientDto>>();
@@ -75,8 +72,6 @@ namespace Taxi.WebUI
 
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
