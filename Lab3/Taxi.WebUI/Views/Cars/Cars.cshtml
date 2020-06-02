@@ -42,18 +42,21 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td asp-display-for="@item.GovernmentNumber"></td>
-            <td asp-display-for="@item.Model"></td>
-            <td asp-display-for="@item.Color"></td>
-            <td asp-display-for="@item.YearOfIssue"></td>
-            <td asp-display-for="@item.RegistrationNumber"></td>
-            <td asp-display-for="@item.IsRepair"></td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
-            </td>
-        </tr>
+            <tr>
+                <td asp-display-for="@item.GovernmentNumber"></td>
+                <td asp-display-for="@item.Model"></td>
+                <td asp-display-for="@item.Color"></td>
+                <td asp-display-for="@item.YearOfIssue"></td>
+                <td asp-display-for="@item.RegistrationNumber"></td>
+                <td asp-display-for="@item.IsRepair"></td>
+                <td>
+                    @if (User.IsInRole(Roles.User))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>

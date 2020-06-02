@@ -4,6 +4,7 @@ using BusinessLogic.Services;
 using BusinessLogic.Services.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,10 +32,13 @@ namespace Taxi.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<TaxiContext>(options => options
             .UseSqlServer(Configuration.GetConnectionString("TaxiConnection"))
             .UseLoggerFactory(TaxiLoggerFactory(Configuration)));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<TaxiContext>();
 
             services.AddTransient<IRepository<CarDto>, TaxiRepository<CarDto>>();
             services.AddTransient<IRepository<ClientDto>, TaxiRepository<ClientDto>>();
@@ -65,7 +69,7 @@ namespace Taxi.WebUI
             else
             {
                 app.UseExceptionHandler("/Cars/Error");
-                
+
                 app.UseHsts();
             }
 
@@ -73,9 +77,14 @@ namespace Taxi.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Cars}/{action=Cars}");
+                endpoints.MapRazorPages();
             });
         }
 
