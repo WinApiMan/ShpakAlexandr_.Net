@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxi.WebUI", "Taxi.WebUI.csproj", "{55E273D2-2BA1-4A94-9CBB-6EE5CD2F2CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.WebUI", "Taxi.WebUI.csproj", "{55E273D2-2BA1-4A94-9CBB-6EE5CD2F2CEA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.DAL", "..\..\Lab2\src\DataAccessLayer\Taxi.DAL.csproj", "{78FEB759-9387-44C9-9EA7-6741DC035D87}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.BusinessLogic", "..\..\Lab2\src\BusinessLogic\Taxi.BusinessLogic.csproj", "{7409AECE-A7EA-4D85-842F-A938589B3BD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxi.WebAPI", "..\Taxi.WebAPI\Taxi.WebAPI.csproj", "{B572B64A-55FB-46F7-AF78-48BDB1D9BC2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7409AECE-A7EA-4D85-842F-A938589B3BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7409AECE-A7EA-4D85-842F-A938589B3BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7409AECE-A7EA-4D85-842F-A938589B3BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B572B64A-55FB-46F7-AF78-48BDB1D9BC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B572B64A-55FB-46F7-AF78-48BDB1D9BC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B572B64A-55FB-46F7-AF78-48BDB1D9BC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B572B64A-55FB-46F7-AF78-48BDB1D9BC2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
